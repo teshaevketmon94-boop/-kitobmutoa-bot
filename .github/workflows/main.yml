@@ -1,0 +1,28 @@
+name: Kitob Mutoa Bot
+
+on:
+  schedule:
+    - cron: '0 18 * * *'
+  workflow_dispatch:
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install requests
+        run: pip install requests
+
+      - name: Run bot
+        env:
+          KITOB_BOT_TOKEN: ${{ secrets.KITOB_BOT_TOKEN }}
+          KITOB_CHAT_ID: ${{ secrets.KITOB_CHAT_ID }}
+        run: python main.py
