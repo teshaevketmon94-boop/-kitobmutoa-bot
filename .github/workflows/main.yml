@@ -19,7 +19,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install requests
-        run: pip install requests
+        run: pip install requests pymupdf
 
       - name: Run bot
         env:
